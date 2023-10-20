@@ -1,0 +1,51 @@
+nav {
+    background-color: rgba(93, 107, 119, 0.47);
+    border-radius: 12px;
+    backdrop-filter: blur(1px);
+    color: rgb(197, 226, 245);
+    width:100%;
+    font-family:cursive;
+   
+}
+
+.brandLogo{
+    /* background-color: pink; */
+    margin:0.2rem;
+    border-radius: 10px;
+}
+
+.brandName{
+    /* background-color: orangered; */
+    margin:0.2rem;
+    padding:0 4px 0 4px;
+    font-size: larger;
+    box-shadow : 0 5px 2px rgb(156, 187, 228);
+   
+    /* backdrop-filter: blur(13px); */
+    
+    /* padding: 2rem; */
+}
+.navLink{
+margin-left: auto;
+border-radius: 10px;
+    /* background-color: black; */
+    justify-content: flex-end;
+}
+
+.linkElement{
+    margin:0.2rem;
+    background-color: rgba(0, 0, 255, 0.224);
+    box-shadow : 0 5px 2px rgb(156, 187, 228);
+    /* border-radius: 10px 18px; */
+    /* backdrop-filter: blur(13px); */
+    display: ruby;
+
+}
+
+.linkElement:hover{
+    
+  border:  5px ;
+  box-shadow : -4 5px 12px rgb(156, 187, 228);
+  /* border-color: rgb(101, 159, 236); */
+  
+}

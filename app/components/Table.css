@@ -1,0 +1,32 @@
+table ,th,td{
+    color: rgb(197, 226, 245);
+    border:1px dashed darkcyan;
+   
+}
+
+tr{
+    padding:20px !important; 
+    /* margin:2rem ;    */
+    border:2px solid rgba(7, 42, 7, 0.553);
+    border-radius: 19px !important;
+
+}
+
+td{
+    padding:0.5rem;
+     /* overflow:wrap; */
+     overflow-wrap: break-word;
+     max-width:  40vh !important;
+
+}
+
+th{
+    font-size: larger;
+    padding: 1rem !important;
+    /* margin:2rem !important; */
+}
+
+
+/* .taskTable{
+    color
+} */
