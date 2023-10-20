@@ -1,0 +1,8 @@
+#createTaskForm {
+  font-size: medium;
+}
+input {
+  color: black !important;
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+}

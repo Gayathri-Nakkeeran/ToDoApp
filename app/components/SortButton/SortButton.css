@@ -1,0 +1,9 @@
+.sortButton {
+  color: rgb(197, 226, 245);
+  font-size: larger;
+  padding: 0.5rem;
+  margin: 1rem;
+  border-radius: 10px 18px;
+  background-color: rgba(83, 117, 106, 0.356);
+  display: flex;
+}

@@ -5,14 +5,19 @@ const initialState = {
     taskName: "",
     description: "",
     dueDate: "",
-    priority: 'P2',
-    taskCompletedToday: 0,
+    priority: '',
+    taskCompleted: 0,
     isViewing: false,
-    currentDateSort: 'default',
+    currentDateSort: 'up',
     task: {},
     taskList: [],
     currentViewingTask: {},
     filterByDate: null,
+    currentPrioritySort: 'desc',
+    isSorting: false,
+    isSortByDate: true,
+    sortOrUnsort: "Sort Task",
+    tableData: [],
 }
 
 const slice = createSlice({
@@ -21,10 +26,9 @@ const slice = createSlice({
     reducers: {
         createTask:
             (state, action) => {
-                console.log("reducer working now")
                 state.isCreating = !state.isCreating
                 state.buttonType = action.payload.buttonType
-                console.log(action)
+
             },
 
         submittingTask:
@@ -58,8 +62,6 @@ const slice = createSlice({
                 state.dueDate = ''
                 state.priority = ""
                 state.isCreating = false
-                // state.createdDate = ""
-                // state.lastModifiedOn = ""
                 state.task = {}
 
 
@@ -69,10 +71,6 @@ const slice = createSlice({
 
             },
 
-        addingTaskToList:
-            (state, action) => {
-
-            },
 
         addingTaskName:
             (state, action) => {
@@ -82,7 +80,7 @@ const slice = createSlice({
         addingTaskDescription:
             (state, action) => {
                 state.description = action.payload.description
-                // console.log(state.description)
+
             },
 
         addingTaskDueDate:
@@ -105,10 +103,11 @@ const slice = createSlice({
                 state.createdDate = ""
                 state.lastModifiedOn = ""
                 state.task = {}
-                // state.isViewing = false
+
             },
         completingTask:
             (state, action) => {
+                state.taskCompleted += 1;
                 state.taskList[action.payload.id]["completed"] = true;
                 state.taskList[action.payload.id]["completedOn"] = new Date().toISOString().split('T')[0]
 
@@ -120,8 +119,7 @@ const slice = createSlice({
             (state, action) => {
                 state.isViewing = true
                 state.currentViewingTask = state.taskList[action.payload.id]
-                // console.log(action.payload.id)
-                // console.log(state.taskList[action.payload.id])
+
 
 
             },
@@ -134,35 +132,61 @@ const slice = createSlice({
 
         backToPendingTask:
             (state, action) => {
-                console.log("slice fro undo")
+
+                state.taskCompleted -= 1;
                 state.taskList[action.payload.id]["completed"] = false;
                 state.taskList[action.payload.id]["lastModifiedOn"] = new Date();
             },
 
         deletingTask:
             (state, action) => {
-                // console.log("Slice working for remove")
+
+                if (state.taskList[action.payload.id]["completed"]) {
+
+                    state.taskCompleted -= 1;
+                }
+
                 state.taskList.splice(action.payload.id, 1)
+
+
+
             },
 
         sortingByDate:
             (state, action) => {
-                // console.log("slice for sartt")
                 state.currentDateSort = action.payload.currentSort
-                // console.log("from slice sort date", state.currentDateSort)
+
             },
 
         filteringByDate:
             (state, action) => {
-                // console.log("slice for filter date", action.payload.filterByDate)
+
                 state.filterByDate = action.payload.filterByDate
+            },
+
+        sortingByPriority:
+            (state, action) => {
+
+                state.currentPrioritySort = action.payload.currentSort
+            },
+
+        sortingTrue:
+            (state, action) => {
+                state.isSorting = !state.isSorting
+                state.sortOrUnsort = action.payload.sortOrUnsort
+
+            },
+        togglingSort:
+            (state, action) => {
+                state.isSortByDate = !state.isSortByDate
+            },
+
+        settingTableData:
+            (state, action) => {
+
+                state.tableData = action.payload.tableData
             }
 
-        // viewingTask:
-        //     (state, action) => {
-        //         console.log("saga working for viewing task")
-        //         state.isViewing = true;
-        //     }
 
 
 
@@ -170,5 +194,6 @@ const slice = createSlice({
 })
 
 export default slice.reducer;
-export const { createTask, submittingTask, addingTaskName, addingTaskDescription, addingTaskDueDate, addingTaskPriority, closingTaskScreen, completingTask, backToPendingTask, deletingTask, viewingTask, closeViewingTask, sortingByDate, filteringByDate } = slice.actions;
-// export const getOffset = (initialState) => initialState.offset
+export const { createTask, submittingTask, addingTaskName, addingTaskDescription, addingTaskDueDate, addingTaskPriority,
+    closingTaskScreen, completingTask, backToPendingTask, deletingTask, viewingTask,
+    closeViewingTask, sortingByDate, filteringByDate, sortingByPriority, sortingTrue, togglingSort, settingTableData } = slice.actions;

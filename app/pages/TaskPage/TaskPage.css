@@ -1,14 +1,8 @@
-/* import backImage from '/black-flower-pictures-1.jpg'; */
-
-
 .createTask{
     color: rgb(197, 226, 245);
-    /* color:rgb(34, 10, 10); */
     font-size: larger;
     padding:1rem;
     margin: 2rem;
     border-radius: 10px 18px;
     background-color: rgba(83, 117, 106, 0.356);
 }
-
-
